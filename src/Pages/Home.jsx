@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import aboutBgVideo from '../assets/aboutbg.mp4';
 
 // Slide dataset containing full titles, image assets, gradient themes, custom text colors, and multiline flags
 const slides = [
@@ -1005,18 +1006,22 @@ export default function Home() {
         className="relative w-full min-h-screen py-24 sm:py-32 px-6 sm:px-16 lg:px-24 flex items-center justify-start overflow-hidden bg-black"
       >
         {/* Background Video */}
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          playsInline
-          onEnded={handleVideoEnd}
-          className="absolute inset-0 w-full h-full object-cover z-0"
-          src="https://res.cloudinary.com/daadrhhk9/video/upload/v1788627490/Creating_3D_animated_cafe%CC%81_backgr__202609052227_tgozri.mp4"
-        />
-
+       <video
+  ref={videoRef}
+  autoPlay
+  muted
+  playsInline
+  onEnded={handleVideoEnd}
+  className="absolute inset-0 w-full h-full object-cover z-0"
+  style={{
+    imageRendering: 'high-quality',
+    transform: 'translateZ(0)', // GPU ആക്സിലറേഷനായി
+    backfaceVisibility: 'hidden',
+  }}
+  src={aboutBgVideo}
+/>
         {/* Overlay to ensure text readability */}
-
+<div className="absolute inset-0 w-full h-full bg-black/10 z-10"></div>
         <div className="relative z-10 max-w-xl mx-0 text-left flex flex-col items-start w-full">
           <h2
             className={`text-3xl sm:text-6xl font-extrabold tracking-tight mt-2 font-vintage-script text-[#006241] drop-shadow-md transition-all duration-1000 transform ${
